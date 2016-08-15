@@ -87,7 +87,64 @@ apiRoutes.use(function(req, res, next) {
 apiRoutes.get('/', function(req, res) {
 	res.json({ message: 'Welcome to the coolest API on earth!' });
 });
-
+apiRoutes.get('/users/update/:id/:name/:password', function(req, res) {
+	if(req.params.id < 0) {
+		return res.status(404).send({ 
+			success: false, 
+			message: 'Page Not Found',
+		});
+  	}else
+	{
+		update = new Users({
+			name: req.params.name,
+			password: req.params.password,
+		});
+		update.set('id', req.params.id);
+		update.save(function(err, rows, fields) {
+			if (err)
+			{
+				res.json({ message: "No result"});
+			}
+			if (!rows)
+			{
+				res.json({ success: false});
+			}
+			else if(rows)
+			{
+				res.json({ success: true});
+			}
+		});
+	}
+});
+apiRoutes.get('/users/remove/:id', function(req, res) {
+	if(req.params.id < 0) {
+		return res.status(404).send({ 
+			success: false, 
+			message: 'Page Not Found',
+		});
+  	}else
+	{
+		remove = new Users({
+			name: req.params.name,
+			password: req.params.password,
+		});
+		remove.set('id', req.params.id);
+		remove.remove(function(err, rows, fields) {
+			if (err)
+			{
+				res.json({ message: "No result"});
+			}
+			if (!rows)
+			{
+				res.json({ success: false});
+			}
+			else if(rows)
+			{
+				res.json({ success: true});
+			}
+		});
+	}
+});
 apiRoutes.get('/users', function(req, res) {
     sec = new Users();
 	sec.find('all', {}, function(err, result) {
