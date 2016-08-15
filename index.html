@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	
+	<meta charset="UTF-8">
+	<title>Responsive Slider Yapımı (DEMO) - Bilişimcafe.Net</title>
+	<link rel="stylesheet" href="http://127.0.0.1/control/style.css" />
+	<script type="text/javascript" src="http://127.0.0.1/control/scripts/jquery.js"></script>
+	<script type="text/javascript" src="http://127.0.0.1/control/scripts/slider.js"></script>
+	
+</head>
+<body>
+<div id="list"></div>
+	<div class="slider">
+		<a href="#" class="onceki"><</a>
+		<a href="#" class="sonraki">></a>
+		<ul class="slider_liste">
+			<li>
+				<a href="#">
+					<img src="http://127.0.0.1/control/images/resim.png" alt=""/>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="http://127.0.0.1/control/images/resim2.png" alt=""/>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="http://127.0.0.1/control/images/resim3.png" alt=""/>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="http://127.0.0.1/control/images/resim4.png" alt=""/>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="http://127.0.0.1/control/images/resim5.png" alt=""/>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+window.onload = function() {
+
+    var messages = [];
+    var socket = io.connect('http://46.197.165.30:8080');
+	var socketTwo = io.connect('http://46.197.165.30:8080/b.html');
+    socket.on('SolOk', function (data) {
+		$(".onceki").click();
+    });
+	socket.on('SagOk', function (data) {
+		$(".sonraki").click();
+    });
+
+}
+	</script>
+
+</body>
+</html>
