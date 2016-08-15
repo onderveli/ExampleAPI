@@ -6,7 +6,7 @@ var bodyParser  = require('body-parser');
 var User   		= require('./app/models/user');
 var morgan      = require('morgan');
 var con 		= require('./config');
-var port 		= process.env.PORT || 8080;
+var port 		= 8080;
 var apiRoutes 	= express.Router();
 var jwt    		= require('jsonwebtoken');
 
